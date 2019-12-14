@@ -1,0 +1,71 @@
+<!-- Navbar -->
+<div class="all-content">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Mongo Scraper</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/saved">Saved Articles</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-sm btn-danger" href="/scrape" role="button">SCRAPE NEW ARTICLES</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-sm btn-danger" href="/clear" role="button">CLEAR ARTICLES</a>
+            </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Jumbotron -->
+    <div class="jumbotron jumbotron-fluid d-flex align-items-center">
+        <div class="container">
+            <h1 class="display-3">Mongo Scraper</h1>
+            <p class="lead">Coffee & Crime Edition</p>
+        </div>
+    </div>
+    <!-- Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                {{#each articles}}
+                    <div class="card">
+                        <div class="d-flex align-items-center">
+                            <h5 class="highlight card-header mx-auto w-100">
+                                <a href="{{link}}" target="_blank">{{headline}}</a> <button type="button" class="btn btn-info">{{tag}}</button>
+                                {{#if saved}}                                
+                                    <button data-id="{{_id}}" id="fav-btn" class="btn float-right" value="{{saved}}"><i class="fas fa-heart"></i></button>
+                                {{else}}
+                                    <button href="#" data-id="{{_id}}" id="fav-btn" class="btn float-right" value="{{saved}}"><i class="far fa-heart"></i></button>
+                                {{/if}}
+                            </h5>
+                        </div>
+                        <div class="row no-gutters">
+                            <div class="col-md-2">
+                                <img src="{{imgUrl}}" class="card-img">
+                            </div>
+                            <div class="col-md-10">
+                                <div class="card-body">
+                                    <p class="card-text">{{summary}}</p>
+                                    <p class="card-text card-date">Posted On: {{displayDate}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Coffee & Crime Mongo Scraper&nbsp;&nbsp;|&nbsp;&nbsp;Powered by <a href="https://www.huffpost.com/" target="_blank">HuffPo</a></p>
+    </footer>
+</div>
+<!-- JavaScript -->
+<script src="../assets/javascript/index.js"></script>
