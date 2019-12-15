@@ -13,7 +13,7 @@ var app = express();
 var router = express.Router();
 
 // Pass routes file into our router
-// require("./config/routes")(router);
+require("./config/routes")(router);
 
 // Designate our public folder as a static directory
 app.use(express.static(__dirname + "/public"));
@@ -29,21 +29,21 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Have every request go through our router middleware
-// app.use(router);
+app.use(router);
 
 // If deployed, use the deployed database, otherwise use the local database
 var db = process.env.MONGODB_URI || "mongodb://localhost/headlines";
 
 // Connect mongoose to our database
-// mongoose.connect(db, { 
-//     useNewUrlParser: true 
-// }, function(error){
-//     if (error) {
-//         console.log(error);
-//     } else {
-//         console.log("mongoose connection successful");
-//     }
-// });
+mongoose.connect(db, { 
+    useNewUrlParser: true 
+}, function(error){
+    if (error) {
+        console.log(error);
+    } else {
+        console.log("mongoose connection successful");
+    }
+});
 
 // Listen on the port
 app.listen(PORT, function() {
