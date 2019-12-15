@@ -29,22 +29,26 @@ router.get("/scrape", function(req, res){
             var $ = cheerio.load(response.data);
  
                 //console Log testing
-                // console.log(
-                //         $(".tnt-section-news")
-                //         .children('div')
-                //         .first()
-                //         .children()
-                //         .last()
-                //         .children("div:nth-child(3)")
-                //         .children()
-                //         .children("li")
-                //         .children("time")
-                //         .attr("datetime")
-                //         .html()
-
-                //         );
+                console.log(
+                        $("article, .tnt-section-news")
+                // .children('article')
                 
-        $(".tnt-section-news").each(function(i, element) {
+                .children('div')
+                .first()
+                .children()
+                .first()
+                .children()
+                .children()
+                .children()
+                .children("a")
+                .children("img")
+                .attr("alt")
+
+                        );
+                
+//      if  ( $("article").hasClass('tnt-section-news') == true){ 
+             
+        $('article').each(function(i, element) {
                 var result = {};
 
                 result.headline = $(this)
@@ -110,10 +114,11 @@ router.get("/scrape", function(req, res){
                         //     // If an error occurred, log it
                         //     console.log(err);
                         // });
-            });
+            }) ;
 
 
-        });
+        // }
+});
 
 });
 }
