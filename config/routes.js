@@ -2,22 +2,35 @@
 var axios = require("axios");
 var cheerio = require("cheerio");
 var moment = require("moment");
+var express = require('express');
+ 
 
 // Require all models
-// var db = require("../models");
+var db = require("../models");
 
 module.exports = function(router) {
     // Route to render the home page
     router.get("/", function(req, res){
-
-            res.render("home");
-        
+        db.Headline.find({}).sort({ date: -1 }).then(function(data) {
+            let articleData = {
+                articles: data
+            };
+            res.render("home", articleData);
+        }).catch(function(err) {
+            res.json(err);
+        });
     });
 
     // Route to render the saved page
     router.get("/saved", function(req, res){
-
-            res.render("saved");
+        db.Headline.find({ saved: true }).sort({ date: -1 }).then(function(data) {
+            let articleData = {
+                articles: data
+            };
+            res.render("saved", articleData);
+        }).catch(function(err) {
+            res.json(err);
+        });
     });
 
 //Get rout for Richmond Times
@@ -29,26 +42,24 @@ router.get("/scrape", function(req, res){
             var $ = cheerio.load(response.data);
  
                 //console Log testing
-                console.log(
-                        $("article, .tnt-section-news")
-                // .children('article')
+                // console.log(
+                //         $(".tnt-sub-section-crime")
+                // // .children('article')
                 
-                .children('div')
-                .first()
-                .children()
-                .first()
-                .children()
-                .children()
-                .children()
-                .children("a")
-                .children("img")
-                .attr("alt")
-
-                        );
+                // .children('div')
+                // .first()
+                // .children()
+                // .first()
+                // .children()
+                // .children()
+                // .children()
+                // .children("a")
+                // .children("img")
+                // .attr("alt")
+                //         );
                 
-//      if  ( $("article").hasClass('tnt-section-news') == true){ 
              
-        $('article').each(function(i, element) {
+        $('.tnt-sub-section-crime').each(function(i, element) {
                 var result = {};
 
                 result.headline = $(this)
@@ -104,21 +115,38 @@ router.get("/scrape", function(req, res){
                 result.displayDate = moment(result.date).format('MMMM Do YYYY');
                 result.tag = "Crime";
 
-                console.log(result);
-                // db.Headline.create(result)
-                        // .then(function(dbHeadline) {
-                        //     // View the added result in the console
-                        //     console.log(dbHeadline);
-                        // })
-                        // .catch(function(err) {
-                        //     // If an error occurred, log it
-                        //     console.log(err);
-                        // });
-            }) ;
+                // console.log(result);
+                db.Headline.create(result)
+                        .then(function(dbHeadline) {
+                            // View the added result in the console
+                            console.log(dbHeadline);
+                        })
+                        .catch(function(err) {
+                            // If an error occurred, log it
+                            console.log(err);
 
 
-        // }
+
+                        });
+             //End Richmond Times scrap           
+             });
+             res.redirect("/");
+        //End Axios Function             
+        });
+
+//End Scrap Function
 });
 
-});
+    // Route to clear the Headline mongoDB collection
+    router.get('/clear', function(req, res) {
+        db.Headline.deleteMany({}).then(function() {
+            // Redirect to the home page
+            res.redirect("/");
+        });
+    });
+
+
+
+
+//End Export Function
 }
