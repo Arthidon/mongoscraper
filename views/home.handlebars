@@ -26,7 +26,7 @@
     <div class="jumbotron jumbotron-fluid d-flex align-items-center">
         <div class="container">
             <h1 class="display-3">Mongo Scraper</h1>
-            <p class="lead">Richmond Times Mongo Scraper</p>
+            <p class="lead">Richmond Crime Mongo Scraper</p>
         </div>
     </div>
     <!-- Content -->
@@ -37,7 +37,7 @@
                     <div class="card">
                         <div class="d-flex align-items-center">
                             <h5 class="highlight card-header mx-auto w-100">
-                                <a href="{{link}}" target="_blank">{{headline}}</a> <button type="button" class="btn btn-info">{{tag}}</button>
+                                <a href="https://www.richmond.com/{{link}}" target="_blank">{{headline}}</a> <button type="button" class="btn btn-info">{{tag}}</button>
                                 {{#if saved}}                                
                                     <button data-id="{{_id}}" id="fav-btn" class="btn float-right" value="{{saved}}"><i class="fas fa-heart"></i></button>
                                 {{else}}
@@ -64,7 +64,7 @@
     <br><br>
     <!-- Footer -->
     <footer class="footer">
-        <p>Richmond Times Mongo Scraper&nbsp;&nbsp;|&nbsp;&nbsp;Powered by <a href="https://www.richmond.com/" target="_blank">Richmond Times</a></p>
+        <p>Richmond Crime Mongo Scraper&nbsp;&nbsp;|&nbsp;&nbsp;Powered by <a href="https://www.richmond.com/" target="_blank">Richmond Times</a></p>
     </footer>
 </div>
 <!-- JavaScript -->

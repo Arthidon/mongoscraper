@@ -40,24 +40,6 @@ router.get("/scrape", function(req, res){
               
             // Then, we load that into cheerio and save it to $
             var $ = cheerio.load(response.data);
- 
-                //console Log testing
-                // console.log(
-                //         $(".tnt-sub-section-crime")
-                // // .children('article')
-                
-                // .children('div')
-                // .first()
-                // .children()
-                // .first()
-                // .children()
-                // .children()
-                // .children()
-                // .children("a")
-                // .children("img")
-                // .attr("alt")
-                //         );
-                
              
         $('.tnt-sub-section-crime').each(function(i, element) {
                 var result = {};
@@ -116,6 +98,8 @@ router.get("/scrape", function(req, res){
                 result.tag = "Crime";
 
                 // console.log(result);
+
+                //Create Collection
                 db.Headline.create(result)
                         .then(function(dbHeadline) {
                             // View the added result in the console
@@ -146,6 +130,33 @@ router.get("/scrape", function(req, res){
     });
 
 
+    // Route not found, render 404 handlebars layout
+    router.get('*', function(req, res) {
+        res.render("404");
+    });
+
+
+    // Route to get notes for a HeadlineID
+    router.get('/notes/:id', function(req, res) {
+        db.Note.find({ _headlineId: req.params.id }).then(function(data) {
+            res.json(data);
+        })
+    });
+
+
+    // ADD NOTES
+    router.post('/addnote', function(req, res) {
+        db.Note.create(req.body)
+            .then(function(dbNote) {
+                // View the added result in the console
+                res.json(dbNote);
+                console.log(dbNote);
+            })
+            .catch(function(err) {
+                // If an error occurred, log it
+                console.log(err);
+            });
+    });
 
 
 //End Export Function
