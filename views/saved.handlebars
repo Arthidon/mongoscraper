@@ -73,9 +73,9 @@
                                 <a href="{{link}}" target="_blank">{{headline}}</a> <button type="button" class="btn btn-info">{{tag}}</button>
                                 <button data-id="{{_id}}" id="note-btn" class="btn float-right" value="{{saved}}" data-toggle="modal" data-target="#notes-modal"><i class="fas fa-sticky-note"></i></button>
                                 {{#if saved}}                                
-                                    <button data-id="{{_id}}" id="fav-btn" class="btn float-right" value="{{saved}}"><i class="fas fa-heart-broken"></i></button>
+                                    <button data-id="{{_id}}" id="fav-btn" class="btn float-right" value="{{saved}}"><i class="fas fa-minus-square"></i></button>
                                 {{else}}
-                                    <button data-id="{{_id}}" id="fav-btn" class="btn float-right" value="{{saved}}"><i class="far fa-heart"></i></button>
+                                    <button data-id="{{_id}}" id="fav-btn" class="btn float-right" value="{{saved}}"><i class="far fa-plus-square"></i></button>
                                 {{/if}}
                             </h5>
                         </div>

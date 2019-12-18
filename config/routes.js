@@ -158,6 +158,19 @@ router.get("/scrape", function(req, res){
             });
     });
 
+    //Save Article Rout
+    router.post('/save/:id', function(req, res) {
+        db.Headline.findOneAndUpdate({_id: req.params.id },
+            {$set: {saved: req.body.saved}},
+            function(err, doc) {
+                if (err, doc) {
+                    console.log("Update Failed");
+                } else {
+                    console.log("Update Succesful")
+                }
+            })
+    })
+
 
 //End Export Function
 }

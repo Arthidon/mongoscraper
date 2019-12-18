@@ -19,9 +19,9 @@ var noteId;
 var listItem;
 
 
-// On click broken heart icon
+// On click broken add icon
 $(document).on("click", "#fav-btn", function() {
-    // Grab the id and value associated with the article from the heart button
+    // Grab the id and value associated with the article from the add button
     thisId = $(this).attr("data-id");
     status = $(this).attr("value");
 
@@ -32,12 +32,12 @@ $(document).on("click", "#fav-btn", function() {
     if (status === 'true') {
         status = false;
         $(this).attr("value", "false");
-        $(this).html('<i class="far fa-heart"></i>');
+        $(this).html('<i class="far fa-plus-square"></i>');
         saveUnsaveArticle(thisId, status);
     } else {
         status = true;
         $(this).attr("value", "true");
-        $(this).html('<i class="fas fa-heart"></i>');
+        $(this).html('<i class="fas fa-plus-square"></i>');
         saveUnsaveArticle(thisId, status);
     }
 });
