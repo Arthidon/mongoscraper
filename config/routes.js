@@ -79,10 +79,6 @@ router.get("/scrape", function(req, res){
                     .children("a")
                     .children("img")
                     .attr("data-srcset")
-                    
-
-            console.log(result.imgUrl);
-
             result.summary = $(this)
                     .children('div')
                     .first()
