@@ -12,7 +12,7 @@ function saveUnsaveArticle (id, status) {
 }
 
 $(document).on("click", "#fav-btn", function() {
-    // Grab the id and value associated with the article from the add button
+    // Grab the id and value associated with the article from the plust button
     var thisId = $(this).attr("data-id");
     var status = $(this).attr("value");
 

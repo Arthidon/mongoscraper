@@ -1,7 +1,7 @@
 <!-- Navbar -->
 <div class="all-content">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">B
-        <a class="navbar-brand" href="/">Mongo Scraper</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/"><i class="fas fa-globe fa-2x"></i></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -14,7 +14,7 @@
                 <a class="nav-link" href="/saved">Saved Articles</a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-sm btn-primary btn-menu" href="/scrape" role="button">SCRAPE NEW ARTICLES</a>
+                <a class="btn btn-sm btn-primary btn-menu" href="/scrape" role="button">SCRAPE ARTICLES</a>
             </li>
             <li class="nav-item">
                 <a class="btn btn-sm btn-primary btn-menu" href="/clear" role="button">CLEAR ARTICLES</a>
@@ -30,35 +30,37 @@
         </div>
     </div>
     <!-- Content -->
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
+    <div class="container" id="cards">
+        <div class="row row-cols-1 row-cols-md-3">
+            {{!-- <div class="col-md-12"> --}}
                 {{#each articles}}
-                    <div class="card">
-                        <div class="d-flex align-items-center">
-                            <h5 class="highlight card-header mx-auto w-100">
-                                <a href="https://www.richmond.com/{{link}}" target="_blank">{{headline}}</a> 
-                                {{#if saved}}                                
-                                    <button data-id="{{_id}}" id="fav-btn" class="btn float-right" value="{{saved}}"><i class="fas fa-plus-square"></i></button>
-                                {{else}}
-                                    <button href="#" data-id="{{_id}}" id="fav-btn" class="btn float-right" value="{{saved}}"><i class="far fa-plus-square"></i></button>
-                                {{/if}}
-                            </h5>
-                        </div>
-                        <div class="row no-gutters">
-                            <div class="col-md-2">
-                                <img src="{{imgUrl}}" class="card-img">
+                    <div class="col mb-4">
+                        <div class="card" style="width: 18rem;">
+                            <div class="d-flex align-items-center">
+                                <h5 class="highlight card-header mx-auto w-100">
+                                    <a href="https://www.richmond.com/{{link}}" target="_blank">{{headline}}</a> 
+                                    {{#if saved}}                                
+                                        <button data-id="{{_id}}" id="fav-btn" class="btn float-right" value="{{saved}}"><i class="fas fa-plus-square"></i></button>
+                                    {{else}}
+                                        <button href="#" data-id="{{_id}}" id="fav-btn" class="btn float-right" value="{{saved}}"><i class="far fa-plus-square"></i></button>
+                                    {{/if}}
+                                </h5>
                             </div>
-                            <div class="col-md-10">
-                                <div class="card-body">
-                                    <p class="card-text">{{summary}}</p>
-                                    <p class="card-text card-date">Posted On: {{displayDate}}</p>
+                            <div class="row no-gutters">
+                                <div class="col-md-2">
+                                    <img src="{{imgUrl}}" class="card-img">
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="card-body">
+                                        <p class="card-text">{{summary}}</p>
+                                        <p class="card-text card-date">Posted On: {{displayDate}}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 {{/each}}
-            </div>
+            {{!-- </div> --}}
         </div>
     </div>
     <br><br>

@@ -30,7 +30,10 @@ html, body {
 
 .card {
     background-color: #FAFAFA;
+    padding-top: 5px;
+    padding-left: 5px;
     font-family: 'Gelasio', serif;
+    box-shadow: 9px 20px 10px rgba(0, 0, 0, 0);
     margin-bottom: 20px;
 }
 

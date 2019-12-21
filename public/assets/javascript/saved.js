@@ -60,6 +60,7 @@ $(document).on("click", "#note-btn", function() {
         method: "GET",
         url: "/notes/" + thisId
     }).then(function(response){
+        console.log("Response: " + response);
         // Check if there are notes, if not, notify in modal
         if (response.length === 0) {
             listItem = `<li id="no-notes" class="list-group-item">No notes have been added for this article.</li>`
@@ -77,7 +78,6 @@ $(document).on("click", "#note-btn", function() {
         }
     });
 });
-
 // On click save notes button
 $(document).on("click", "#save-btn", function() {
     // Grab the id associated with the article and the text in the text area
