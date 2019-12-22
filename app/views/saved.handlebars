@@ -1,0 +1,116 @@
+<!-- Hidden Modal -->
+<div id="notes-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title"></h5>
+            <button type="button" class="close modalClose" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul id="notes-list" class="list-group">
+                            <li class="list-group-item">Here's a note <button id="trash-btn" class="btn btn-sm float-right"><i class="fas fa-trash-alt"></i></button></li>
+                        </ul>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <textarea class="form-control" id="note-text" rows="3" placeholder="Enter new note text here."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="modalClose btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" id="save-btn" class="btn btn-dark">Save Note</button>
+        </div>
+        </div>
+    </div>
+</div>
+<!-- Navbar -->
+<div class="all-content">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/"><i class="fas fa-globe fa-2x"></i></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/saved">Saved Articles</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-sm btn-primary btn-menu" href="/clear" role="button">CLEAR ARTICLES</a>
+            </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Jumbotron -->
+    <div class="jumbotron jumbotron-fluid d-flex align-items-center">
+        <div class="container">
+            <h1 class="display-3">Mongo Scraper</h1>
+            <p class="lead">Saved Articles</p>
+        </div>
+    </div>
+    <!-- Content -->
+    <div class="container">
+        <div class="row">
+            <div class="row row-cols-1 row-cols-md-3">
+                {{#each articles}}
+                <div class="col mb-4">
+                    <div class="card-deck">
+                        <div class="card" style="width: 30rem;" data-id="{{_id}}">
+                            <div class="d-flex align-items-center">
+                                <h5 class="highlight card-header mx-auto w-100">
+                                    <a href="{{link}}" target="_blank">{{headline}}</a>
+                                </h5>
+                            </div>
+                            
+                                        <div class="row no-gutters">
+                                            <div class="col-md-3">
+                                                <img src="{{imgUrl}}" class="card-img">
+                                            </div>
+                                            <div class="col-md-9">
+                                                <div class="card-body">
+                                                    <p class="card-text">{{summary}}</p>
+                                                
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                <div class="card-footer">
+                                    <button data-id="{{_id}}" id="note-btn" class="btn float-right" value="{{saved}}" data-toggle="modal" data-target="#notes-modal"><i class="fas fa-edit"></i></button>
+                                        <small class="text-muted">Posted On: {{displayDate}}</small>
+                                    {{#if saved}}                                
+                                        <button data-id="{{_id}}" id="fav-btn" class="btn float-right" value="{{saved}}"><i class="fas fa-minus-square"></i></button>
+                                    {{else}}
+                                        <button data-id="{{_id}}" id="fav-btn" class="btn float-right" value="{{saved}}"><i class="far fa-plus-square"></i></button>
+                                    {{/if}}
+                                </div>
+                                
+                            
+                        </div>
+                    </div>
+                   </div> 
+                {{/each}}
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Richmond Crime Mongo Scraper&nbsp;&nbsp;|&nbsp;&nbsp;Powered by <a href="https://www.richmond.com/" target="_blank">Richmond Times</a></p>
+    </footer>
+</div>
+<!-- JavaScript -->
+<script src="/assets/javascript/saved.js"></script>
