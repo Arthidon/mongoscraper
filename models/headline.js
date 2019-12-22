@@ -31,3 +31,4 @@ var headlineSchema = new Schema({
 var Headline = mongoose.model("Headline", headlineSchema);
 
 module.exports = Headline;
+//updated name
