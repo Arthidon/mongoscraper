@@ -32,7 +32,7 @@ app.use(express.json());
 app.use(router);
 
 // If deployed, use the deployed database, otherwise use the local database
-var db = process.env.MONGODB_URI || "mongodb://localhost/headlines";
+var db = process.env.MONGODB_URI || "mongodb://scraper:scraper1@ds261567.mlab.com:61567/heroku_054jpq68";
 
 // Connect mongoose to our database
 mongoose.connect(db, { 
