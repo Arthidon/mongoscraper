@@ -3,7 +3,6 @@ const express = require('express');
 const expressHandlebars = require('express-handlebars');
 const mongoose = require('mongoose');
 
-
 // Set up port to be either the host's designated port or 3000
 var PORT = process.env.PORT || 3000;
 
@@ -34,7 +33,6 @@ app.use(router);
 
 // If deployed, use the deployed database, otherwise use the local database
 var db = process.env.MONGODB_URI || "mongodb://scraper:scraper1@ds335668.mlab.com:35668/heroku_97b86j6t";
-// "mongodb://scraper:scraper1@ds335668.mlab.com:35668/heroku_97b86j6t";
 
 
 // Connect mongoose to our database
