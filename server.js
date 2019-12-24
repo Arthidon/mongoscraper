@@ -1,7 +1,7 @@
 // DEPENDENCIES
-const express = require('express');
-const expressHandlebars = require('express-handlebars');
-const mongoose = require('mongoose');
+var express = require('express');
+var expressHandlebars = require('express-handlebars');
+var mongoose = require('mongoose');
 
 // Set up port to be either the host's designated port or 3000
 var PORT = process.env.PORT || 3000;
@@ -32,8 +32,7 @@ app.use(express.json());
 app.use(router);
 
 // If deployed, use the deployed database, otherwise use the local database
-var db = process.env.MONGODB_URI || "mongodb://scraper:scraper1@ds335668.mlab.com:35668/heroku_97b86j6t";
-
+var db = process.env.MONGODB_URI || "mongodb://localhost/headlines";
 
 // Connect mongoose to our database
 mongoose.connect(db, { 
@@ -48,5 +47,5 @@ mongoose.connect(db, {
 
 // Listen on the port
 app.listen(PORT, function() {
-    console.log(`==> 🌎 Listening on port: ${PORT}`);
+    console.log("Listening on port:" + PORT);
 });
