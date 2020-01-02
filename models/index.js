@@ -1,4 +1,4 @@
 module.exports = {
-    Headline: require("./Headline"),
+    headline: require("./headline"),
     Note: require("./Note")
 };

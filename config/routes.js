@@ -11,7 +11,7 @@ module.exports = function(router) {
 
     // Route to render the home page
     router.get("/", function(req, res){
-        db.Headline.find({}).sort({ date: -1 }).then(function(data) {
+        db.headline.find({}).sort({ date: -1 }).then(function(data) {
             if (data.length === 0) {
                 res.render("empty");
             } else {
@@ -27,7 +27,7 @@ module.exports = function(router) {
 
     // Route to render the saved page
     router.get("/saved", function (req, res) {
-        db.Headline.find({ saved: true }).sort({ date: -1 }).then(function (data) {
+        db.headline.find({ saved: true }).sort({ date: -1 }).then(function (data) {
             let articleData = {
                 articles: data
             };
@@ -104,10 +104,10 @@ router.get("/scrape", function(req, res){
                 console.log(result);
 
                 //Create Collection
-                db.Headline.create(result)
-                        .then(function(dbHeadline) {
+                db.headline.create(result)
+                        .then(function(dbheadline) {
                             // Created collection log
-                            // console.log(dbHeadline);
+                            // console.log(dbheadline);
                         })
                         .catch(function(err) {
                             //If Error Log
@@ -124,16 +124,16 @@ router.get("/scrape", function(req, res){
     //End Scrape Function
     });
 
-    // Route to clear the Headline and Note mongoDB collection
+    // Route to clear the headline and Note mongoDB collection
     router.get('/clear', function(req, res) {
-        db.Headline.deleteMany({}).then(function() {
+        db.headline.deleteMany({}).then(function() {
             db.Note.deleteMany({}).then(function() {
                 res.redirect("/");
             });
         });
     });
 
-    // Notes for Headline ID
+    // Notes for headline ID
     router.get('/notes/:id', function(req, res) {
         db.Note.find({ _headlineId: req.params.id }).then(function(data) {
             res.json(data);
@@ -154,7 +154,7 @@ router.get("/scrape", function(req, res){
 
     // Route to save/unsave an article
     router.post('/save/:id', function(req, res) {
-        db.Headline.findOneAndUpdate({ _id: req.params.id }, 
+        db.headline.findOneAndUpdate({ _id: req.params.id }, 
             {$set: {saved: req.body.saved}},
             function (err, doc) {
                 if (err) {

@@ -35,13 +35,13 @@ In this assignment, you'll create a web app that lets users view and leave comme
 7. When you go to connect your mongo database to mongoose, do so the following way:
 
 ```js
-// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+// If deployed, use the deployed database. Otherwise use the local mongoheadlines database
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoheadlines";
 
 mongoose.connect(MONGODB_URI);
 ```
 
-* This code should connect mongoose to your remote mongolab database if deployed, but otherwise will connect to the local mongoHeadlines database on your computer.
+* This code should connect mongoose to your remote mongolab database if deployed, but otherwise will connect to the local mongoheadlines database on your computer.
 
 8. [Watch this demo of a possible submission](https://youtu.be/4ltZr3VPmno). See the deployed demo application [here](http://nyt-mongo-scraper.herokuapp.com/).
 
@@ -73,7 +73,7 @@ Having an active and healthy commit history on GitHub is important for your futu
 
   1. Whenever a user visits your site, the app should scrape stories from a news outlet of your choice and display them for the user. Each scraped article should be saved to your application database. At a minimum, the app should scrape and display the following information for each article:
 
-     * Headline - the title of the article
+     * headline - the title of the article
 
      * Summary - a short summary of the article
 
