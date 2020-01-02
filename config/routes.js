@@ -124,25 +124,25 @@ router.get("/scrape", function(req, res){
     //End Scrape Function
     });
 
-    // Route to clear the headline and Note mongoDB collection
+    // Route to clear the headline and note mongoDB collection
     router.get('/clear', function(req, res) {
         db.headline.deleteMany({}).then(function() {
-            db.Note.deleteMany({}).then(function() {
+            db.note.deleteMany({}).then(function() {
                 res.redirect("/");
             });
         });
     });
 
-    // Notes for headline ID
+    // notes for headline ID
     router.get('/notes/:id', function(req, res) {
-        db.Note.find({ _headlineId: req.params.id }).then(function(data) {
+        db.note.find({ _headlineId: req.params.id }).then(function(data) {
             res.json(data);
         })
     });
 
-    // Delete Notes by ID
+    // Delete notes by ID
     router.get('/deletenote/:id', function(req, res) {
-        db.Note.findByIdAndDelete({ _id: req.params.id }).then(function(data) {
+        db.note.findByIdAndDelete({ _id: req.params.id }).then(function(data) {
             res.json(data);
         })
     });
@@ -167,11 +167,11 @@ router.get("/scrape", function(req, res){
 
     // Route to add new note
     router.post('/addnote', function(req, res) {
-        db.Note.create(req.body)
-            .then(function(dbNote) {
+        db.note.create(req.body)
+            .then(function(dbnote) {
                 // View the added result in the console
-                res.json(dbNote);
-                console.log(dbNote);
+                res.json(dbnote);
+                console.log(dbnote);
             })
             .catch(function(err) {
                 // If an error occurred, log it

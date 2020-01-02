@@ -52,7 +52,7 @@ $(document).on("click", "#note-btn", function() {
     thisId = $(this).attr("data-id");
     
     // Set modal title and show modal
-    $('.modal-title').html('Notes for Article: <span id="id-span">' + thisId + '</span');
+    $('.modal-title').html('notes for Article: <span id="id-span">' + thisId + '</span');
     $('#notes-modal').show();
 
     // Get route for all notes related to this headlineId
